@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<Context displayName="UniversidadeAcme" 
+         docBase="UniversidadeAcme" 
+         path="UniversidadeAcme" 
+         privileged="true" swallowOutput="off">
+
+ <Resource name="jdbc/universidadeacm" type="javax.sql.DataSource" driverClassName="com.mysql.jdbc.Driver" 
+   url="jdbc:mysql://localhost:3306/chart" username="root" password=""
+   maxActive="50" maxWait="-1" maxIdle="10" removeAbandoned="true" logAbandoned="true" />
+
+ 
+
+</Context>
