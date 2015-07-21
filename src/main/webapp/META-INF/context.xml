@@ -6,7 +6,7 @@
          privileged="true" swallowOutput="off">
 
  <Resource name="jdbc/universidadeacm" type="javax.sql.DataSource" driverClassName="com.mysql.jdbc.Driver" 
-   url="jdbc:mysql://localhost:3306/chart" username="root" password=""
+   url="jdbc:mysql://localhost:3306/universidadeacme" username="root" password="root"
    maxActive="50" maxWait="-1" maxIdle="10" removeAbandoned="true" logAbandoned="true" />
 
  

@@ -7,6 +7,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -30,10 +31,10 @@ public class Usuario {
 	@ManyToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
 	private Perfil perfil;
 	
-	@ManyToOne(cascade=CascadeType.REFRESH,fetch=FetchType.EAGER,optional=true)
+	@OneToOne(cascade=CascadeType.REFRESH,fetch=FetchType.EAGER,optional=true)
 	private Aluno aluno;
 	
-	@ManyToOne(cascade=CascadeType.REFRESH,fetch=FetchType.EAGER,optional=true)
+	@OneToOne(cascade=CascadeType.REFRESH,fetch=FetchType.EAGER,optional=true)
 	private Coordenador coordenador;
 
 	public Long getId() {
