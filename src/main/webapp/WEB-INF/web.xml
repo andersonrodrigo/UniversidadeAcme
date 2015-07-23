@@ -9,7 +9,7 @@
     </session-config>
     <welcome-file-list>
         <welcome-file>
-            index.jsp
+            index.xhtml
         </welcome-file>
     </welcome-file-list>
      
@@ -40,5 +40,42 @@
             com.puc.acme.listener.ConfiguraApp
         </listener-class>  
     </listener> 
+    
+     <listener>
+	<listener-class>
+		org.springframework.web.context.ContextLoaderListener
+	</listener-class>
+  </listener>
+  <listener>
+	<listener-class>
+		org.springframework.web.context.request.RequestContextListener
+	</listener-class>
+  </listener>
+ 
+  <!-- Change to "Production" when you are ready to deploy -->
+  <context-param>
+    <param-name>javax.faces.PROJECT_STAGE</param-name>
+    <param-value>Development</param-value>
+  </context-param>
+ 
+  <!-- Welcome page -->
+  <welcome-file-list>
+    <welcome-file>default.jsf</welcome-file>
+  </welcome-file-list>
+ 
+  <!-- JSF Mapping -->
+  <servlet>
+    <servlet-name>facesServlet</servlet-name>
+    <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>facesServlet</servlet-name>
+    <url-pattern>*.jsf</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>facesServlet</servlet-name>
+    <url-pattern>*.xhtml</url-pattern>
+  </servlet-mapping>
     
 </web-app>
