@@ -14,12 +14,18 @@ public class FactoryBanco {
      
     
 	private FactoryBanco(String persistenceUnitName){
-		factory = Persistence.createEntityManagerFactory(persistenceUnitName);
+		factory = Persistence.createEntityManagerFactory(persistenceUnitName!=null?persistenceUnitName:"JUniversidadeAcme");
 		 this.entityManager = factory.createEntityManager();
 	}
 	public static FactoryBanco getInstance(String persistenceUnitName ) {
 		if (INSTANCE==null){
 			INSTANCE = new FactoryBanco(persistenceUnitName);
+		}
+		return INSTANCE;
+	}
+	public static FactoryBanco getInstance() {
+		if (INSTANCE==null){
+			INSTANCE = new FactoryBanco(null);
 		}
 		return INSTANCE;
 	}
