@@ -1,12 +1,14 @@
 package com.puc.acme.persistence;
 
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -28,8 +30,8 @@ public class Usuario {
 	@Column(name = "senha")
 	private String senha;
 	
-	@ManyToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
-	private Perfil perfil;
+	@OneToMany	(cascade=CascadeType.ALL,fetch=FetchType.EAGER,mappedBy="usuario")
+	private List<PerfilUsuario> perfilUsuario;
 	
 	@OneToOne(cascade=CascadeType.REFRESH,fetch=FetchType.EAGER,optional=true)
 	private Aluno aluno;
@@ -69,12 +71,14 @@ public class Usuario {
 		this.senha = senha;
 	}
 
-	public Perfil getPerfil() {
-		return perfil;
+	 
+
+	public List<PerfilUsuario> getPerfilUsuario() {
+		return perfilUsuario;
 	}
 
-	public void setPerfil(Perfil perfil) {
-		this.perfil = perfil;
+	public void setPerfilUsuario(List<PerfilUsuario> perfilUsuario) {
+		this.perfilUsuario = perfilUsuario;
 	}
 
 	public Aluno getAluno() {
