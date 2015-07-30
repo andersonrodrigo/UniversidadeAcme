@@ -55,7 +55,7 @@
   <!-- Change to "Production" when you are ready to deploy -->
   <context-param>
     <param-name>javax.faces.PROJECT_STAGE</param-name>
-    <param-value>Development</param-value>
+    <param-value>Production</param-value>
   </context-param>
  
   <!-- Welcome page -->
@@ -93,7 +93,15 @@
 		<description>Todos os usuários com Login</description>
 		<role-name>Membros</role-name>
 	</security-role>
-
+ <security-role>
+    <role-name>Aluno</role-name>
+ </security-role>
+  <security-role>
+    <role-name>Coordenador</role-name>
+ </security-role>
+  <security-role>
+    <role-name>Atendente</role-name>
+ </security-role>
 
 	<security-constraint>
 		<display-name>Restrição de Página Inicial</display-name>
@@ -102,9 +110,12 @@
 			<url-pattern>/*</url-pattern>
 		</web-resource-collection>
 		<auth-constraint>
-			<role-name>Membros</role-name>
-
+			<role-name>Aluno</role-name>
+			<role-name>Coordenador</role-name>
+			<role-name>Atendente</role-name>
 		</auth-constraint>
 	</security-constraint>
- 
+	 
+
+    
 </web-app>

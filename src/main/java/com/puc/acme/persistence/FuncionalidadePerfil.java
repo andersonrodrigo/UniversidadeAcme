@@ -12,7 +12,7 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table(name = "Funcionalidade")
+@Table(name = "FuncionalidadePerfil")
 public class FuncionalidadePerfil {
 	
 	@Id @GeneratedValue

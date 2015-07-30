@@ -5,12 +5,14 @@
 	xmlns:h="http://java.sun.com/jsf/html">
 
 <h:body>
-	<table>
-		<tr>
-			<td>Bem Vindo a Universidade Acme!<BR />
+	<table id="login" >
+	 
+	
+		<tr align="center">
+			<td><B>Bem Vindo a Universidade Acme!</B><BR />
 			</td>
 		</tr>
-		<tr>
+		<tr align="center">
 			<td>
 				<form method="post" action="j_security_check">
 					<div>
@@ -39,6 +41,23 @@
 			</td>
 		</tr>
 	</table>
+	
+	 <style type="text/css">
+#login {
+	width: 500px; /* Tamanho da Largura da Div */
+	height: 200px; /* Tamanho da Altura da Div */
+	position: absolute;
+	top: 50%;
+	margin-top: -100px;
+	/* ou seja ele pega 50% da altura tela e sobe metade do valor da altura no caso 100 */
+	left: 50%;
+	margin-left: -250px;
+	/* ou seja ele pega 50% da largura tela e diminui  metade do valor da largura no caso 250 */
+	background-color: #6495ED;
+}
+
+ 
+</style>
 </h:body>
 
 </html>

@@ -6,9 +6,12 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.faces.application.NavigationHandler;
 import javax.faces.bean.ManagedBean;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.context.annotation.Scope;
 
@@ -33,7 +36,7 @@ public class UserBean{
 		List<Aluno> listaAlunos = em.createQuery("from Aluno").getResultList();	
 		for (Iterator<Aluno> iterator = listaAlunos.iterator(); iterator.hasNext();) {
 			Aluno aluno = iterator.next();
-			retorno = aluno.getNome();
+			retorno = retorno + aluno.getNome() + "<BR/>";
 		}
 		return retorno;
 	}
@@ -62,6 +65,51 @@ public class UserBean{
         } catch (NoSuchAlgorithmException e) {
             throw new Exception(e);
         }
+    }
+    
+    /**
+     * 
+     */
+    public void desloga(){
+    	HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+    	request.getSession().invalidate();
+    	FacesContext context = FacesContext.getCurrentInstance();
+
+    	NavigationHandler navHandler = context.getApplication().getNavigationHandler();
+
+    	navHandler.handleNavigation(context, null, "logout");	
+   
+    }
+    
+    /**
+     * 
+     * @return
+     */
+    public Boolean  perfilAluno(){
+    	HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        return request.isUserInRole("Aluno");	
+    }
+    /**
+     * 
+     * @return
+     */
+    public Boolean  perfilCoordenador(){
+    	HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        return request.isUserInRole("Coordenador");	
+    }
+    /**
+     * 
+     * @return
+     */
+    public Boolean  perfilAtendente(){
+    	HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        return request.isUserInRole("Atendente");	
+    }
+    
+    public String nomeUsuario(){
+    	HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        
+    	return request.getUserPrincipal().getName();
     }
 
 }
