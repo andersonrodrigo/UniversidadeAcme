@@ -6,17 +6,27 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <title>Pagina Inicial</title>
-<header><h1>Bem vindo a Universidade Acme, <h:outputText value="#{userBo.nomeUsuario()}" /></h1></header>
+
+<header>
+Universidade Acme  
+<div align="right">
+		<h:outputText value="#{userBo.nomeUsuario()}" />
+		<h:commandButton value="Sair" style="width: 150;height: 20px;"   action="#{userBo.desloga()}" />
+</div>
+</header>
+
+ 
+ 
+ 
 <h:body>
  
-		<h:form>
+		<h:form id="telaInicial">
 			
 
-			<h:outputText id="cabecalho" escape="false"
-				value="#{userBo.printMsgFromSpring()}" />
+		 <h1>Bem vindo a Universidade Acme, <h:outputText value="#{userBo.nomeUsuario()}" /></h1>
 			<table>
 				<tr>
-					<td><h:outputText value="Ver minhas notas"
+					<td><h:commandButton value="Ver minhas notas" style="width: 300px;height: 200px;" id="apresentaNotasAluno" action="#{alunoBean.apresentaNotasAluno()}"
 							rendered="#{userBo.perfilAluno()}" /></td>
 					<td><h:outputText
 							value="Ver minhas notasVer notas dos meus alunos"
@@ -26,19 +36,21 @@
 
 				</tr>
 			</table>
-			<h:commandButton value="Sair" action="#{userBo.desloga()}" />
+			
 		</h:form>
  
 </h:body>
 <footer>
 <table>
 <tr>
-<td>Universidade Acme. 2015  
+<td>Universidade Acme. 2015 , Rua Claudio Manuel,966 (31) 9164-2374 Paraiba Tecnologia Copyright 2015. 
 </td>
 </tr>
 </table>
 </footer>
 <style type="text/css">
+ 
+
 footer {
     position: absolute; 
     bottom: 0px; 

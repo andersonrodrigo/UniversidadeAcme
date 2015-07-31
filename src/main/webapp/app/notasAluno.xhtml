@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	 xmlns:f="http://java.sun.com/jsf/core">
+
+<title>Pagina Inicial</title>
+<header>
+Universidade Acme  <div align="right"><h:outputText value="#{userBo.nomeUsuario()}" /><h:commandButton value="Sair" style="width: 150;height: 20px;"   action="#{userBo.desloga()}" /></div>
+</header>
+<h:body>
+ 
+ 
+		<h:form id="notas">
+			
+			
+			<table>
+			<tr>
+				<td>
+				 Disciplina: <select />
+				</td>
+				<td>
+				 Data: <input type="text" />
+				</td>
+				<td>
+				a <input type="text" />
+				</td>
+			</tr>
+ 			</table>
+		 
+		 <h:dataTable value="#{alunoBean.listaResultado}" var="o"
+    			styleClass="order-table"
+    			headerClass="order-table-header"
+    			rowClasses="order-table-odd-row,order-table-even-row"
+    		>
+ 
+    			<h:column>
+    				<!-- column header -->
+    				<f:facet name="header">Disciplina</f:facet>
+    				<!-- row record -->
+    				#{o.disciplinaTurma.disciplina.nome}
+    			</h:column>
+ 
+    			 <h:column>
+    			   <f:facet name="header">Notas</f:facet>
+    			   
+    			   <h:dataTable value="#{o.notas}" var="notas"
+    					styleClass="order-table"
+    						headerClass="order-table-header"
+    						rowClasses="order-table-odd-row,order-table-even-row"
+    						>
+  					<h:column>
+  							 <f:facet name="header">Data</f:facet>
+  							 #{notas.data}
+  					 </h:column>
+  					 <h:column>
+  							 <f:facet name="header">Valor Atividade</f:facet>
+  							 #{notas.valorAtividade}
+  					 </h:column>
+  					 <h:column>
+  							 <f:facet name="header">Valor Obtido</f:facet>
+  							 #{notas.valorObtido}
+  					 </h:column>
+    			   </h:dataTable>
+    			 </h:column>
+ 
+    		</h:dataTable>
+			
+		</h:form>
+ 
+</h:body>
+<footer>
+<table>
+<tr>
+<td>Universidade Acme. 2015 , Rua Claudio Manuel,966 (31) 9164-2374 Paraiba Tecnologia Copyright 2015. 
+</td>
+</tr>
+</table>
+</footer>
+<style type="text/css">
+ .order-table{   
+	border-collapse:collapse;
+}
+ 
+.order-table-header{
+	text-align:center;
+	background:none repeat scroll 0 0 #E5E5E5;
+	border-bottom:1px solid #BBBBBB;
+	padding:16px;
+}
+ 
+.order-table-odd-row{
+	text-align:center;
+	background:none repeat scroll 0 0 #FFFFFFF;
+	border-top:1px solid #BBBBBB;
+}
+ 
+.order-table-even-row{
+	text-align:center;
+	background:none repeat scroll 0 0 #F9F9F9;
+	border-top:1px solid #BBBBBB;
+}
+
+footer {
+    position: absolute; 
+    bottom: 0px; 
+    width: 100%; 
+    height: 60px; 
+    background-color: #BACBF6;
+}
+header {
+    min-height: 55px;
+    background-color: #BACBF6;
+}
+body {
+    
+    background-color: #DCE2F1
+}
+
+ 
+</style>
+</html>

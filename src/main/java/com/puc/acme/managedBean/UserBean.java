@@ -9,6 +9,7 @@ import java.util.List;
 import javax.faces.application.NavigationHandler;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
+import javax.inject.Inject;
 import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.servlet.http.HttpServletRequest;
@@ -16,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.context.annotation.Scope;
 
 import com.puc.acme.factory.FactoryBanco;
+import com.puc.acme.manager.AlunoManager;
 import com.puc.acme.persistence.Aluno;
 import com.puc.acme.persistence.Usuario;
 import com.puc.acme.utils.DigesterHelper;
@@ -27,7 +29,7 @@ import com.puc.acme.utils.DigesterHelper;
 @ManagedBean(name="userBo")
 public class UserBean{
  
-	 
+	
  
 	@SuppressWarnings("unchecked")
 	public String printMsgFromSpring() {
