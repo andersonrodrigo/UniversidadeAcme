@@ -8,7 +8,9 @@
 
 <title>Pagina Inicial</title>
 <header>
-Universidade Acme  <div align="right"><h:outputText value="#{userBo.nomeUsuario()}" /><h:commandButton value="Sair" style="width: 150;height: 20px;"   action="#{userBo.desloga()}" /></div>
+Universidade Acme  <div align="right"><h:outputText value="#{userBo.nomeUsuario()}" />
+<h:form> <h:commandButton value="Sair" style="width: 150;height: 20px;"   action="#{userBo.desloga()}" /></h:form>
+</div>
 </header>
 <h:body>
  
