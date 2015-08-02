@@ -8,6 +8,12 @@
 
 <title>Pagina Inicial</title>
 <header>
+  <link rel="stylesheet" href="/UniversidadeAcme/jquery/jquery-ui.css"/>
+  <script src="/UniversidadeAcme/jquery/jquery-1.10.2.js"></script>
+  <script src="/UniversidadeAcme/jquery/jquery-ui.js"></script>
+  <link rel="stylesheet" href="/resources/demos/style.css" />
+  
+  
 Universidade Acme  <div align="right"><h:outputText value="#{userBo.nomeUsuario()}" />
 <h:form> <h:commandButton value="Sair" style="width: 150;height: 20px;"   action="#{userBo.desloga()}" /></h:form>
 </div>
@@ -21,17 +27,39 @@ Universidade Acme  <div align="right"><h:outputText value="#{userBo.nomeUsuario(
 			<table>
 			<tr>
 				<td>
-				 Disciplina: <select />
+				 Disciplina: 
+
+
+<h:selectOneMenu value="#{alunoBean.disciplina.id}"    >  
+   <f:selectItem itemLabel="Todas" itemValue=""/>
+                        <f:selectItems value="#{ComboApp.recuperaCombo('Disciplina')}" var="item" itemLabel="#{item}" itemValue="#{item.id}"/>  
+                    </h:selectOneMenu>  
+
+
 				</td>
 				<td>
-				 Data: <input type="text" />
+				 Data: <h:inputText id="dataInicial" value="#{alunoBean.dataInicial}" />
 				</td>
 				<td>
-				a <input type="text" />
+				a <h:inputText id="dataFinal" value="#{alunoBean.dataFinal}" />
+				</td>
+				<td>
+				<h:commandButton value="Buscar"    action="#{alunoBean.pesquisa()}" />
 				</td>
 			</tr>
  			</table>
-		 
+		 <script>
+		 jQuery("#notas\\:dataInicial").datepicker({  todayBtn: "linked",
+       language: "pt",
+       autoclose: true,
+       todayHighlight: true,
+       dateFormat: 'dd/mm/yy'} );
+		 jQuery("#notas\\:dataFinal").datepicker( { todayBtn: "linked",
+       language: "pt",
+       autoclose: true,
+       todayHighlight: true,
+       dateFormat: 'dd/mm/yy'} );
+		 </script>
 		 <h:dataTable value="#{alunoBean.listaResultado}" var="o"
     			styleClass="order-table"
     			headerClass="order-table-header"

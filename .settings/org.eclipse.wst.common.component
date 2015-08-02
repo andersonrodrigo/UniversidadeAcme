@@ -4,7 +4,9 @@
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
         <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
-        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/test/java"/>
+        <wb-resource deploy-path="/" source-path="/src/main/webapp/jquery"/>
+        <wb-resource deploy-path="/" source-path="/src/main/webapp/img"/>
+        <wb-resource deploy-path="/" source-path="/src/main/webapp/template"/>
         <property name="java-output-path" value="/UniversidadeAcme/build/classes"/>
         <property name="context-root" value="../../../apache-tomcat-6.0.44/webapps/UniversidadeAcme"/>
     </wb-module>

@@ -34,9 +34,11 @@ import com.puc.acme.persistence.Disciplina;
 	
 	private Disciplina disciplina;
 	
-	private Date dataInicial;
+	private String dataInicial;
 	
-	private Date dataFinal;
+	private String dataFinal;
+	
+ 
 	
 	
 	/**Gets e Sets
@@ -79,7 +81,7 @@ import com.puc.acme.persistence.Disciplina;
 	 * 
 	 * @return
 	 */
-	public Date getDataInicial() {
+	public String getDataInicial() {
 		return dataInicial;
 	}
 
@@ -87,7 +89,7 @@ import com.puc.acme.persistence.Disciplina;
 	 * 
 	 * @param dataInicial
 	 */
-	public void setDataInicial(Date dataInicial) {
+	public void setDataInicial(String dataInicial) {
 		this.dataInicial = dataInicial;
 	}
 
@@ -95,7 +97,7 @@ import com.puc.acme.persistence.Disciplina;
 	 * 
 	 * @return
 	 */
-	public Date getDataFinal() {
+	public String getDataFinal() {
 		return dataFinal;
 	}
 
@@ -103,7 +105,7 @@ import com.puc.acme.persistence.Disciplina;
 	 * 
 	 * @param dataFinal
 	 */
-	public void setDataFinal(Date dataFinal) {
+	public void setDataFinal(String dataFinal) {
 		this.dataFinal = dataFinal;
 	}
 
@@ -112,6 +114,8 @@ import com.puc.acme.persistence.Disciplina;
 	 */
 	public void apresentaNotasAluno(){
 		
+		disciplina = new Disciplina();
+			
     	FacesContext context = FacesContext.getCurrentInstance();
 
     	NavigationHandler navHandler = context.getApplication().getNavigationHandler();
@@ -129,8 +133,15 @@ import com.puc.acme.persistence.Disciplina;
 	 */
 	private List<AlunoDisciplinaTurma> pesquisaNotasAluno() {
 		HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
-    	
+    	 
 		return getAlunoManager().buscaNotasAlunos(dataInicial,dataFinal,disciplina,request.getUserPrincipal().getName());
+	}
+	
+ 
+	public String pesquisa(){
+		HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+		listaResultado = getAlunoManager().buscaNotasAlunos(dataInicial,dataFinal,disciplina,request.getUserPrincipal().getName());
+		return null;
 	}
 
 	public AlunoManager getAlunoManager() {
