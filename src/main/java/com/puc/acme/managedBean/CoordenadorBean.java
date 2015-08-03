@@ -12,14 +12,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 
 import com.puc.acme.manager.AlunoManager;
+import com.puc.acme.persistence.Aluno;
 import com.puc.acme.persistence.AlunoDisciplinaTurma;
+import com.puc.acme.persistence.Curso;
 import com.puc.acme.persistence.Disciplina;
 
 
 @Scope("session")
 @Named
 @ManagedBean(name="alunoBean")
- public class AlunoBean {
+ public class CoordenadorBean {
 	
 	 
 	@Autowired(required=false)
@@ -30,6 +32,10 @@ import com.puc.acme.persistence.Disciplina;
 	 */
 	
 	private List<AlunoDisciplinaTurma> listaResultado;
+	
+	private Aluno aluno;
+	
+	private Curso curso;
 	
 	private Disciplina disciplina;
 	
@@ -50,6 +56,40 @@ import com.puc.acme.persistence.Disciplina;
 	 */
 	public List<AlunoDisciplinaTurma> getListaResultado() {
 		return listaResultado;
+	}
+
+	/**
+	 * 
+	 * @return
+	 */
+	public Curso getCurso() {
+		return curso;
+	}
+
+
+	/**
+	 * 
+	 * @param curso
+	 */
+	public void setCurso(Curso curso) {
+		this.curso = curso;
+	}
+
+
+	/**
+	 * 
+	 * @return
+	 */
+	public Aluno getAluno() {
+		return aluno;
+	}
+
+	/**
+	 * 
+	 * @param aluno
+	 */
+	public void setAluno(Aluno aluno) {
+		this.aluno = aluno;
 	}
 
 	/**
@@ -114,6 +154,10 @@ import com.puc.acme.persistence.Disciplina;
 	public void apresentaNotasAluno(){
 		
 		disciplina = new Disciplina();
+		
+		aluno = new Aluno();
+		
+		curso = new Curso();
 			
     	FacesContext context = FacesContext.getCurrentInstance();
 
@@ -121,7 +165,7 @@ import com.puc.acme.persistence.Disciplina;
 
     	listaResultado = pesquisaNotasAluno();
     	
-    	navHandler.handleNavigation(context, null, "apresentaNotas");	
+    	navHandler.handleNavigation(context, null, "apresentaNotasCoordenador");	
 	}
 
 
@@ -133,7 +177,7 @@ import com.puc.acme.persistence.Disciplina;
 	private List<AlunoDisciplinaTurma> pesquisaNotasAluno() {
 		HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
     	 
-		return getAlunoManager().buscaNotasAlunos(dataInicial,dataFinal,disciplina,request.getUserPrincipal().getName());
+		return getAlunoManager().buscaNotasAlunosCoordenador(dataInicial,dataFinal,disciplina,aluno,curso,request.getUserPrincipal().getName());
 	}
 	
  
@@ -142,14 +186,10 @@ import com.puc.acme.persistence.Disciplina;
 	 * @return
 	 */
 	public String pesquisa(){
-		listaResultado =pesquisaNotasAluno();
+	 	listaResultado =pesquisaNotasAluno();
 		return null;
 	}
 
-	/**
-	 * 
-	 * @return
-	 */
 	public AlunoManager getAlunoManager() {
 		if (alunoManager==null){
 			alunoManager = new AlunoManager();

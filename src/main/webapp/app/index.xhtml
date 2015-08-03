@@ -28,11 +28,11 @@ Universidade Acme
 				<tr>
 					<td><h:commandButton value="Ver minhas notas" style="width: 300px;height: 200px;" id="apresentaNotasAluno" action="#{alunoBean.apresentaNotasAluno()}"
 							rendered="#{userBo.perfilAluno()}" /></td>
-					<td><h:outputText
-							value="Ver minhas notasVer notas dos meus alunos"
-							rendered="#{userBo.perfilCoordenador()}" /></td>
-					<td><h:outputText value="Ver notas de um aluno"
-							rendered="#{userBo.perfilAtendente()}" /></td>
+					<td><h:commandButton
+							value="Ver notas dos meus alunos" style="width: 300px;height: 200px;"
+							rendered="#{userBo.perfilCoordenador()}" action="#{coordenadorBean.apresentaNotasAluno()}"/></td>
+					<td><h:commandButton value="Ver notas de um aluno" style="width: 300px;height: 200px;" 
+							rendered="#{userBo.perfilAtendente()}" action="#{atendenteBean.apresentaNotasAluno()}"/></td>
 
 				</tr>
 			</table>

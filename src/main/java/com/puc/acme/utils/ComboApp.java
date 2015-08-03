@@ -21,7 +21,7 @@ import com.puc.acme.factory.FactoryBanco;
 @ManagedBean(name="ComboApp")
 public class ComboApp {
 	
-	private String[] objetosCombo = new String[]{"Aluno","Disciplina"};
+	private String[] objetosCombo = new String[]{"Aluno","Disciplina","Curso"};
 	
 	@SuppressWarnings("rawtypes")
 	private HashMap<String, List> mapaCambos;
