@@ -14,38 +14,35 @@ import org.apache.commons.beanutils.PropertyUtils;
 
 import com.puc.acme.factory.FactoryBanco;
 
-
-
- 
 @ApplicationScoped
-@ManagedBean(name="ComboApp")
+@ManagedBean(name = "ComboApp")
 public class ComboApp {
-	
-	private String[] objetosCombo = new String[]{"Aluno","Disciplina","Curso"};
-	
+
+	private String[] objetosCombo = new String[] { "Aluno", "Disciplina", "Curso" };
+
 	@SuppressWarnings("rawtypes")
 	private HashMap<String, List> mapaCambos;
-	
-	public void carregaCombos(){
+
+	public void carregaCombos() {
 		mapaCambos = new HashMap<String, List>();
-		EntityManager em = FactoryBanco.getInstance().getEntityManager();		
+		EntityManager em = FactoryBanco.getInstance().getEntityManager();
 		for (int i = 0; i < objetosCombo.length; i++) {
-			try{
-				mapaCambos.put(objetosCombo[i].toString(),transformaSelectItens(listaObjetos(em,objetosCombo[i])));
-			}catch(Exception e){
+			try {
+				mapaCambos.put(objetosCombo[i].toString(), transformaSelectItens(listaObjetos(em, objetosCombo[i])));
+			} catch (Exception e) {
 				e.printStackTrace();
-				}
 			}
+		}
 	}
-	
+
 	/**
 	 * 
 	 * @param classe
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
-	public List<SelectItem> recuperaCombo(String classe){
-		if (mapaCambos==null){
+	public List<SelectItem> recuperaCombo(String classe) {
+		if (mapaCambos == null) {
 			carregaCombos();
 		}
 		return mapaCambos.get(classe);
@@ -55,24 +52,23 @@ public class ComboApp {
 	 * 
 	 * @param listaObjetos
 	 * @return
-	 * @throws NoSuchMethodException 
-	 * @throws InvocationTargetException 
-	 * @throws IllegalAccessException 
+	 * @throws NoSuchMethodException
+	 * @throws InvocationTargetException
+	 * @throws IllegalAccessException
 	 */
-	private List transformaSelectItens(List listaObjetos) throws IllegalAccessException, InvocationTargetException, NoSuchMethodException {
+	private List transformaSelectItens(List listaObjetos)
+			throws IllegalAccessException, InvocationTargetException, NoSuchMethodException {
 		List listaRetorno = new ArrayList();
-		if (listaObjetos!=null && !listaObjetos.isEmpty()){
+		if (listaObjetos != null && !listaObjetos.isEmpty()) {
 			for (Object object : listaObjetos) {
 				SelectItem selectItem = new SelectItem();
-				selectItem.setValue(PropertyUtils.getProperty(object,"id"));
+				selectItem.setValue(PropertyUtils.getProperty(object, "id"));
 				selectItem.setLabel(object.toString());
-				listaRetorno.add(selectItem);	
-				}
+				listaRetorno.add(selectItem);
+			}
 		}
 		return listaRetorno;
 	}
-
-
 
 	/**
 	 * 
@@ -81,28 +77,20 @@ public class ComboApp {
 	 * @return
 	 */
 	private List listaObjetos(EntityManager em, String obj) {
-		 
-		return em.createQuery("from "+obj).getResultList();
+
+		return em.createQuery("from " + obj).getResultList();
 	}
 
-
-
- 
-
 	public HashMap<String, List> getMapaCambos() {
-		if (mapaCambos==null){
+		if (mapaCambos == null) {
 			carregaCombos();
 		}
 		return mapaCambos;
 	}
 
-
-
 	public void setMapaCambos(HashMap<String, List> mapaCambos) {
 		this.mapaCambos = mapaCambos;
 	}
-
-
 
 	public String[] getObjetosCombo() {
 		return objetosCombo;
@@ -111,7 +99,5 @@ public class ComboApp {
 	public void setObjetosCombo(String[] objetosCombo) {
 		this.objetosCombo = objetosCombo;
 	}
-	
-	
 
 }

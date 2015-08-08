@@ -15,28 +15,28 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "Usuario")
 public class Usuario {
-	
-	@Id @GeneratedValue
+
+	@Id
+	@GeneratedValue
 	@Column(name = "id")
 	private Long id;
 
-
 	@Column(name = "nome")
 	private String nome;
-	
+
 	@Column(name = "login")
 	private String login;
-	
+
 	@Column(name = "senha")
 	private String senha;
-	
-	@OneToMany	(cascade=CascadeType.ALL,fetch=FetchType.EAGER,mappedBy="usuario")
+
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "usuario")
 	private List<PerfilUsuario> perfilUsuario;
-	
-	@OneToOne(cascade=CascadeType.REFRESH,fetch=FetchType.EAGER,optional=true)
+
+	@OneToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER, optional = true)
 	private Aluno aluno;
-	
-	@OneToOne(cascade=CascadeType.REFRESH,fetch=FetchType.EAGER,optional=true)
+
+	@OneToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER, optional = true)
 	private Coordenador coordenador;
 
 	public Long getId() {
@@ -71,8 +71,6 @@ public class Usuario {
 		this.senha = senha;
 	}
 
-	 
-
 	public List<PerfilUsuario> getPerfilUsuario() {
 		return perfilUsuario;
 	}
@@ -96,9 +94,5 @@ public class Usuario {
 	public void setCoordenador(Coordenador coordenador) {
 		this.coordenador = coordenador;
 	}
-	
-	
-	
-	
 
 }

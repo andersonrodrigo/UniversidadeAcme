@@ -14,35 +14,31 @@ import com.puc.acme.manager.AlunoManager;
 import com.puc.acme.persistence.Aluno;
 import com.puc.acme.persistence.AlunoDisciplinaTurma;
 
-
 @Scope("session")
 @Named
-@ManagedBean(name="alunoBean")
- public class AtendenteBean {
-	
-	 
-	@Autowired(required=false)
+@ManagedBean(name = "alunoBean")
+public class AtendenteBean {
+
+	@Autowired(required = false)
 	AlunoManager alunoManager;
-	
+
 	/**
 	 * Atributos do MB
 	 */
-	
+
 	private List<AlunoDisciplinaTurma> listaResultado;
-	
+
 	private Aluno aluno;
-	
+
 	private String dataInicial;
-	
+
 	private String dataFinal;
-	
- 
-	
-	
-	/**Gets e Sets
+
+	/**
+	 * Gets e Sets
 	 * 
 	 */
-	
+
 	/**
 	 * 
 	 * @return
@@ -110,36 +106,33 @@ import com.puc.acme.persistence.AlunoDisciplinaTurma;
 	/**
 	 * 
 	 */
-	public void apresentaNotasAluno(){
-		
+	public void apresentaNotasAluno() {
+
 		aluno = new Aluno();
-			
-    	FacesContext context = FacesContext.getCurrentInstance();
 
-    	NavigationHandler navHandler = context.getApplication().getNavigationHandler();
+		FacesContext context = FacesContext.getCurrentInstance();
 
-    	listaResultado = pesquisaNotasAluno();
-    	
-    	navHandler.handleNavigation(context, null, "apresentaNotasAtendente");	
+		NavigationHandler navHandler = context.getApplication().getNavigationHandler();
+
+		listaResultado = pesquisaNotasAluno();
+
+		navHandler.handleNavigation(context, null, "apresentaNotasAtendente");
 	}
-
-
 
 	/**
 	 * 
 	 * @return
 	 */
 	private List<AlunoDisciplinaTurma> pesquisaNotasAluno() {
-	 	return getAlunoManager().buscaNotasAlunosAtendente(dataInicial,dataFinal,aluno);
+		return getAlunoManager().buscaNotasAlunosAtendente(dataInicial, dataFinal, aluno);
 	}
-	
- 
+
 	/**
 	 * 
 	 * @return
 	 */
-	public String pesquisa(){
-	 	listaResultado = pesquisaNotasAluno();
+	public String pesquisa() {
+		listaResultado = pesquisaNotasAluno();
 		return null;
 	}
 
@@ -148,7 +141,7 @@ import com.puc.acme.persistence.AlunoDisciplinaTurma;
 	 * @return
 	 */
 	public AlunoManager getAlunoManager() {
-		if (alunoManager==null){
+		if (alunoManager == null) {
 			alunoManager = new AlunoManager();
 		}
 		return alunoManager;

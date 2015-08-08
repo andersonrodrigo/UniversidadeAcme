@@ -13,21 +13,19 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "Periodo")
 public class Periodo {
-	@Id @GeneratedValue
+	@Id
+	@GeneratedValue
 	@Column(name = "id")
 	private Long id;
 
-
 	@Column(name = "nome")
 	private String nome;
-	
+
 	@Temporal(TemporalType.DATE)
 	private Date dataInicial;
-	
+
 	@Temporal(TemporalType.DATE)
 	private Date dataFinal;
-
-	 
 
 	public Long getId() {
 		return id;
@@ -60,7 +58,5 @@ public class Periodo {
 	public void setDataFinal(Date dataFinal) {
 		this.dataFinal = dataFinal;
 	}
-	
-	
 
 }

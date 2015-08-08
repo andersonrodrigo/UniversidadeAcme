@@ -17,39 +17,35 @@ import com.puc.acme.persistence.AlunoDisciplinaTurma;
 import com.puc.acme.persistence.Curso;
 import com.puc.acme.persistence.Disciplina;
 
-
 @Scope("session")
 @Named
-@ManagedBean(name="alunoBean")
- public class CoordenadorBean {
-	
-	 
-	@Autowired(required=false)
+@ManagedBean(name = "alunoBean")
+public class CoordenadorBean {
+
+	@Autowired(required = false)
 	AlunoManager alunoManager;
-	
+
 	/**
 	 * Atributos do MB
 	 */
-	
+
 	private List<AlunoDisciplinaTurma> listaResultado;
-	
+
 	private Aluno aluno;
-	
+
 	private Curso curso;
-	
+
 	private Disciplina disciplina;
-	
+
 	private String dataInicial;
-	
+
 	private String dataFinal;
-	
- 
-	
-	
-	/**Gets e Sets
+
+	/**
+	 * Gets e Sets
 	 * 
 	 */
-	
+
 	/**
 	 * 
 	 * @return
@@ -66,7 +62,6 @@ import com.puc.acme.persistence.Disciplina;
 		return curso;
 	}
 
-
 	/**
 	 * 
 	 * @param curso
@@ -74,7 +69,6 @@ import com.puc.acme.persistence.Disciplina;
 	public void setCurso(Curso curso) {
 		this.curso = curso;
 	}
-
 
 	/**
 	 * 
@@ -151,47 +145,46 @@ import com.puc.acme.persistence.Disciplina;
 	/**
 	 * 
 	 */
-	public void apresentaNotasAluno(){
-		
+	public void apresentaNotasAluno() {
+
 		disciplina = new Disciplina();
-		
+
 		aluno = new Aluno();
-		
+
 		curso = new Curso();
-			
-    	FacesContext context = FacesContext.getCurrentInstance();
 
-    	NavigationHandler navHandler = context.getApplication().getNavigationHandler();
+		FacesContext context = FacesContext.getCurrentInstance();
 
-    	listaResultado = pesquisaNotasAluno();
-    	
-    	navHandler.handleNavigation(context, null, "apresentaNotasCoordenador");	
+		NavigationHandler navHandler = context.getApplication().getNavigationHandler();
+
+		listaResultado = pesquisaNotasAluno();
+
+		navHandler.handleNavigation(context, null, "apresentaNotasCoordenador");
 	}
-
-
 
 	/**
 	 * 
 	 * @return
 	 */
 	private List<AlunoDisciplinaTurma> pesquisaNotasAluno() {
-		HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
-    	 
-		return getAlunoManager().buscaNotasAlunosCoordenador(dataInicial,dataFinal,disciplina,aluno,curso,request.getUserPrincipal().getName());
+		HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext()
+				.getRequest();
+
+		return getAlunoManager().buscaNotasAlunosCoordenador(dataInicial, dataFinal, disciplina, aluno, curso,
+				request.getUserPrincipal().getName());
 	}
-	
- 
+
 	/**
 	 * 
 	 * @return
 	 */
-	public String pesquisa(){
-	 	listaResultado =pesquisaNotasAluno();
+	public String pesquisa() {
+		listaResultado = pesquisaNotasAluno();
 		return null;
 	}
 
 	public AlunoManager getAlunoManager() {
-		if (alunoManager==null){
+		if (alunoManager == null) {
 			alunoManager = new AlunoManager();
 		}
 		return alunoManager;

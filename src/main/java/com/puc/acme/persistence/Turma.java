@@ -1,4 +1,5 @@
 package com.puc.acme.persistence;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,19 +12,17 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "Turma")
 public class Turma {
-	
-	@Id @GeneratedValue
+
+	@Id
+	@GeneratedValue
 	@Column(name = "id")
 	private Long id;
 
-
 	@Column(name = "nome")
 	private String nome;
-	
-	@ManyToOne(cascade=CascadeType.REFRESH,fetch=FetchType.LAZY)
-	private Periodo periodo;
 
-	 
+	@ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
+	private Periodo periodo;
 
 	public Long getId() {
 		return id;
@@ -48,7 +47,5 @@ public class Turma {
 	public void setPeriodo(Periodo periodo) {
 		this.periodo = periodo;
 	}
-	
-	
 
 }

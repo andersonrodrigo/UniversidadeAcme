@@ -13,20 +13,19 @@ import javax.persistence.Table;
 @Table(name = "DisciplinaTurma")
 public class DisciplinaTurma {
 
-	@Id @GeneratedValue
+	@Id
+	@GeneratedValue
 	@Column(name = "id")
 	private Long id;
-	
-	@ManyToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
-	private Turma turma;
-	
-	@ManyToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
-	private Disciplina disciplina;
-	
-	@ManyToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
-	private Curso curso;
 
-	 
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	private Turma turma;
+
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	private Disciplina disciplina;
+
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	private Curso curso;
 
 	public Long getId() {
 		return id;
@@ -59,6 +58,5 @@ public class DisciplinaTurma {
 	public void setCurso(Curso curso) {
 		this.curso = curso;
 	}
-	
-	
+
 }

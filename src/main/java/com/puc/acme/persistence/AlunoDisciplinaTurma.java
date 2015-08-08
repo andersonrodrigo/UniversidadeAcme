@@ -1,7 +1,5 @@
 package com.puc.acme.persistence;
 
- 
-
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -17,27 +15,23 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "AlunoDisciplinaTurma")
 public class AlunoDisciplinaTurma {
-	@Id @GeneratedValue
+	@Id
+	@GeneratedValue
 	@Column(name = "id")
 	private Long id;
 
-	
-	@ManyToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private Aluno aluno;
-	
-	
-	@ManyToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
+
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private DisciplinaTurma disciplinaTurma;
-	
+
 	@Column(name = "status")
 	private String status;
 
-	 
-	
-	@OneToMany(cascade=CascadeType.ALL,mappedBy="alunoDisciplinaTurma",fetch=FetchType.EAGER,targetEntity=Notas.class)	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "alunoDisciplinaTurma", fetch = FetchType.EAGER, targetEntity = Notas.class)
 	private List<Notas> notas;
-	
-	
+
 	public List<Notas> getNotas() {
 		return notas;
 	}
@@ -77,6 +71,5 @@ public class AlunoDisciplinaTurma {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	
 
 }

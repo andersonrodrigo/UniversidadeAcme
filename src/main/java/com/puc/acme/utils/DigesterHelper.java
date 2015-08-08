@@ -11,7 +11,7 @@ import java.security.NoSuchAlgorithmException;
  * @version $Id: DigesterHelper.java 3493 2007-04-20 20:41:59Z roberto $
  */
 public class DigesterHelper {
-	
+
 	/**
 	 * 
 	 * @param algoritimo
@@ -19,12 +19,11 @@ public class DigesterHelper {
 	 * @return
 	 * @throws NoSuchAlgorithmException
 	 */
-	public static String digest(String algoritimo, String objeto)
-			throws NoSuchAlgorithmException {
-		
+	public static String digest(String algoritimo, String objeto) throws NoSuchAlgorithmException {
+
 		return digest(algoritimo, objeto.getBytes());
 	}
-	
+
 	/**
 	 * 
 	 * @param algoritimo
@@ -32,13 +31,12 @@ public class DigesterHelper {
 	 * @return
 	 * @throws NoSuchAlgorithmException
 	 */
-	public static String digest(String algoritimo, byte[] objeto)
-			throws NoSuchAlgorithmException {
+	public static String digest(String algoritimo, byte[] objeto) throws NoSuchAlgorithmException {
 
 		MessageDigest md = MessageDigest.getInstance(algoritimo);
 		byte[] b = md.digest(objeto);
 
 		return HexUtils.convert(b);
 	}
-	
+
 }

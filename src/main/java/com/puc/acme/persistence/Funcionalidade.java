@@ -9,15 +9,15 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "Funcionalidade")
 public class Funcionalidade {
-	
-	@Id @GeneratedValue
+
+	@Id
+	@GeneratedValue
 	@Column(name = "id")
 	private Long id;
 
-
 	@Column(name = "nome")
 	private String nome;
-	
+
 	@Column(name = "url")
 	private String url;
 
@@ -44,8 +44,5 @@ public class Funcionalidade {
 	public void setUrl(String url) {
 		this.url = url;
 	}
-	
-	
-
 
 }
