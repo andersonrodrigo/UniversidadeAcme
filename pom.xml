@@ -1,17 +1,18 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>UniversidadeAcme</groupId>
-  <artifactId>UniversidadeAcme</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
-  <packaging>war</packaging>
-  
-  	<properties>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>UniversidadeAcme</groupId>
+	<artifactId>UniversidadeAcme</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>war</packaging>
+
+	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		
+
 		<hibernate.version>4.3.0.Final</hibernate.version>
-		
+
 	</properties>
-  <build>
+	<build>
 		<!-- outputDirectory>../../../apache-tomcat-6.0.44/webapps</outputDirectory -->
 		<finalName>../../../apache-tomcat-6.0.44/webapps/UniversidadeAcme</finalName>
 		<plugins>
@@ -20,32 +21,32 @@
 				<artifactId>maven-dependency-plugin</artifactId>
 				<version>2.2</version>
 			</plugin>
-			
-		<plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <version>3.3</version>
-        <configuration>
-          <source>1.6</source>
-          <target>1.6</target>
-        </configuration>
-      </plugin>
-			
-			
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.3</version>
+				<configuration>
+					<source>1.6</source>
+					<target>1.6</target>
+				</configuration>
+			</plugin>
+
+
 		</plugins>
 	</build>
 	<dependencies>
-	    <dependency> 
+		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>servlet-api</artifactId>
 			<version>2.5</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-validator</artifactId>
 			<version>${hibernate.version}</version>
-			
+
 			<exclusions>
 				<exclusion>
 					<groupId>org.slf4j</groupId>
@@ -53,33 +54,33 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-	 
-			<dependency>
+
+		<dependency>
 			<groupId>org.hibernate.javax.persistence</groupId>
 			<artifactId>hibernate-jpa-2.1-api</artifactId>
-		<version>1.0.0.Final</version>
-			
+			<version>1.0.0.Final</version>
+
 		</dependency>
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-jpamodelgen</artifactId>
 			<version>${hibernate.version}</version>
-		
+
 		</dependency>
 
-		 <dependency>
+		<dependency>
 			<groupId>javax.persistence</groupId>
 			<artifactId>persistence-api</artifactId>
 			<version>1.0</version>
-		
+
 		</dependency>
-		 <dependency>
-	<groupId>commons-beanutils</groupId>
-	<artifactId>commons-beanutils</artifactId>
-	<version>1.8.3</version>
-</dependency>
-		 
-		
+		<dependency>
+			<groupId>commons-beanutils</groupId>
+			<artifactId>commons-beanutils</artifactId>
+			<version>1.8.3</version>
+		</dependency>
+
+
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-entitymanager</artifactId>
@@ -89,28 +90,28 @@
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<version>5.1.36</version>
-	</dependency>
-		
-			<!-- Spring framework -->
+		</dependency>
+
+		<!-- Spring framework -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-core</artifactId>
 			<version>3.1.2.RELEASE</version>
 		</dependency>
- 
+
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-web</artifactId>
 			<version>3.1.2.RELEASE</version>
 		</dependency>
- 
+
 		<!-- JSR-330 -->
 		<dependency>
 			<groupId>javax.inject</groupId>
 			<artifactId>javax.inject</artifactId>
 			<version>1</version>
 		</dependency>
- 
+
 		<!-- JSF -->
 		<dependency>
 			<groupId>com.sun.faces</groupId>
@@ -122,36 +123,56 @@
 			<artifactId>jsf-impl</artifactId>
 			<version>2.1.13</version>
 		</dependency>
- 
+
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
 		</dependency>
- 
-		 
- 
+
+
+
 		<dependency>
 			<groupId>javax.servlet.jsp</groupId>
 			<artifactId>jsp-api</artifactId>
 			<version>2.1</version>
 		</dependency>
- 
+
 		<!-- EL -->
 		<dependency>
 			<groupId>org.glassfish.web</groupId>
 			<artifactId>el-impl</artifactId>
 			<version>2.2</version>
 		</dependency>
- 
+
 		<!-- Tomcat 6 need this -->
 		<dependency>
 			<groupId>com.sun.el</groupId>
 			<artifactId>el-ri</artifactId>
 			<version>1.0</version>
 		</dependency>
-		
-		
+
+		<!-- TEST -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.8.1</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.hamcrest</groupId>
+			<artifactId>hamcrest-all</artifactId>
+			<version>1.3</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-all</artifactId>
+			<version>1.10.19</version>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
-	
+
 </project>
