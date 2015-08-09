@@ -20,11 +20,10 @@ public class ComboApp {
 
 	private String[] objetosCombo = new String[] { "Aluno", "Disciplina", "Curso" };
 
-	@SuppressWarnings("rawtypes")
-	private HashMap<String, List> mapaCambos;
+	private HashMap<String, List<?>> mapaCambos;
 
 	public void carregaCombos() {
-		mapaCambos = new HashMap<String, List>();
+		mapaCambos = new HashMap<String, List<?>>();
 		EntityManager em = FactoryBanco.getInstance().getEntityManager();
 		for (int i = 0; i < objetosCombo.length; i++) {
 			try {
@@ -45,7 +44,7 @@ public class ComboApp {
 		if (mapaCambos == null) {
 			carregaCombos();
 		}
-		return mapaCambos.get(classe);
+		return (List<SelectItem>) mapaCambos.get(classe);
 	}
 
 	/**
@@ -56,9 +55,9 @@ public class ComboApp {
 	 * @throws InvocationTargetException
 	 * @throws IllegalAccessException
 	 */
-	private List transformaSelectItens(List listaObjetos)
+	protected List<SelectItem> transformaSelectItens(List<?> listaObjetos)
 			throws IllegalAccessException, InvocationTargetException, NoSuchMethodException {
-		List listaRetorno = new ArrayList();
+		List<SelectItem> listaRetorno = new ArrayList<SelectItem>();
 		if (listaObjetos != null && !listaObjetos.isEmpty()) {
 			for (Object object : listaObjetos) {
 				SelectItem selectItem = new SelectItem();
@@ -76,19 +75,19 @@ public class ComboApp {
 	 * @param obj
 	 * @return
 	 */
-	private List listaObjetos(EntityManager em, String obj) {
+	private List<?> listaObjetos(EntityManager em, String obj) {
 
 		return em.createQuery("from " + obj).getResultList();
 	}
 
-	public HashMap<String, List> getMapaCambos() {
+	public HashMap<String, List<?>> getMapaCambos() {
 		if (mapaCambos == null) {
 			carregaCombos();
 		}
 		return mapaCambos;
 	}
 
-	public void setMapaCambos(HashMap<String, List> mapaCambos) {
+	public void setMapaCambos(HashMap<String, List<?>> mapaCambos) {
 		this.mapaCambos = mapaCambos;
 	}
 
