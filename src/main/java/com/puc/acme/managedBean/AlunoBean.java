@@ -15,20 +15,17 @@ import com.puc.acme.manager.AlunoManager;
 import com.puc.acme.persistence.AlunoDisciplinaTurma;
 import com.puc.acme.persistence.Disciplina;
 
+import exception.AcmeException;
+
 
 @Scope("session")
 @Named
 @ManagedBean(name="alunoBean")
  public class AlunoBean {
-	
-	 
+
 	@Autowired(required=false)
-	AlunoManager alunoManager;
-	
-	/**
-	 * Atributos do MB
-	 */
-	
+	private AlunoManager alunoManager;
+
 	private List<AlunoDisciplinaTurma> listaResultado;
 	
 	private Disciplina disciplina;
@@ -36,82 +33,40 @@ import com.puc.acme.persistence.Disciplina;
 	private String dataInicial;
 	
 	private String dataFinal;
-	
- 
-	
-	
-	/**Gets e Sets
-	 * 
-	 */
-	
-	/**
-	 * 
-	 * @return
-	 */
+
 	public List<AlunoDisciplinaTurma> getListaResultado() {
 		return listaResultado;
 	}
 
-	/**
-	 * 
-	 * @param listaResultado
-	 */
 	public void setListaResultado(List<AlunoDisciplinaTurma> listaResultado) {
 		this.listaResultado = listaResultado;
 	}
 
-	/**
-	 * 
-	 * @return
-	 */
 	public Disciplina getDisciplina() {
 		return disciplina;
 	}
 
-	/**
-	 * 
-	 * @param disciplina
-	 */
 	public void setDisciplina(Disciplina disciplina) {
 		this.disciplina = disciplina;
 	}
 
-	/**
-	 * 
-	 * @return
-	 */
 	public String getDataInicial() {
 		return dataInicial;
 	}
 
-	/**
-	 * 
-	 * @param dataInicial
-	 */
 	public void setDataInicial(String dataInicial) {
 		this.dataInicial = dataInicial;
 	}
 
-	/**
-	 * 
-	 * @return
-	 */
 	public String getDataFinal() {
 		return dataFinal;
 	}
 
-	/**
-	 * 
-	 * @param dataFinal
-	 */
 	public void setDataFinal(String dataFinal) {
 		this.dataFinal = dataFinal;
 	}
-
-	/**
-	 * 
-	 */
-	public void apresentaNotasAluno(){
+	
+	public void apresentaNotasAluno() throws AcmeException{
 		
 		disciplina = new Disciplina();
 			
@@ -124,32 +79,17 @@ import com.puc.acme.persistence.Disciplina;
     	navHandler.handleNavigation(context, null, "apresentaNotas");	
 	}
 
-
-
-	/**
-	 * 
-	 * @return
-	 */
-	private List<AlunoDisciplinaTurma> pesquisaNotasAluno() {
+	private List<AlunoDisciplinaTurma> pesquisaNotasAluno() throws AcmeException {
 		HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
     	 
 		return getAlunoManager().buscaNotasAlunos(dataInicial,dataFinal,disciplina,request.getUserPrincipal().getName());
 	}
-	
- 
-	/**
-	 * 
-	 * @return
-	 */
-	public String pesquisa(){
-		listaResultado =pesquisaNotasAluno();
+
+	public String pesquisa() throws AcmeException{
+		listaResultado = pesquisaNotasAluno();
 		return null;
 	}
 
-	/**
-	 * 
-	 * @return
-	 */
 	public AlunoManager getAlunoManager() {
 		if (alunoManager==null){
 			alunoManager = new AlunoManager();

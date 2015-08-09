@@ -14,17 +14,15 @@ import com.puc.acme.manager.AlunoManager;
 import com.puc.acme.persistence.Aluno;
 import com.puc.acme.persistence.AlunoDisciplinaTurma;
 
+import exception.AcmeException;
+
 @Scope("session")
 @Named
 @ManagedBean(name = "alunoBean")
 public class AtendenteBean {
 
 	@Autowired(required = false)
-	AlunoManager alunoManager;
-
-	/**
-	 * Atributos do MB
-	 */
+	private AlunoManager alunoManager;
 
 	private List<AlunoDisciplinaTurma> listaResultado;
 
@@ -34,79 +32,39 @@ public class AtendenteBean {
 
 	private String dataFinal;
 
-	/**
-	 * Gets e Sets
-	 * 
-	 */
-
-	/**
-	 * 
-	 * @return
-	 */
 	public List<AlunoDisciplinaTurma> getListaResultado() {
 		return listaResultado;
 	}
 
-	/**
-	 * 
-	 * @param listaResultado
-	 */
 	public void setListaResultado(List<AlunoDisciplinaTurma> listaResultado) {
 		this.listaResultado = listaResultado;
 	}
 
-	/**
-	 * 
-	 * @return
-	 */
 	public Aluno getAluno() {
 		return aluno;
 	}
 
-	/**
-	 * 
-	 * @param aluno
-	 */
 	public void setAluno(Aluno aluno) {
 		this.aluno = aluno;
 	}
 
-	/**
-	 * 
-	 * @return
-	 */
 	public String getDataInicial() {
 		return dataInicial;
 	}
 
-	/**
-	 * 
-	 * @param dataInicial
-	 */
 	public void setDataInicial(String dataInicial) {
 		this.dataInicial = dataInicial;
 	}
 
-	/**
-	 * 
-	 * @return
-	 */
 	public String getDataFinal() {
 		return dataFinal;
 	}
 
-	/**
-	 * 
-	 * @param dataFinal
-	 */
 	public void setDataFinal(String dataFinal) {
 		this.dataFinal = dataFinal;
 	}
 
-	/**
-	 * 
-	 */
-	public void apresentaNotasAluno() {
+	public void apresentaNotasAluno() throws AcmeException {
 
 		aluno = new Aluno();
 
@@ -119,27 +77,15 @@ public class AtendenteBean {
 		navHandler.handleNavigation(context, null, "apresentaNotasAtendente");
 	}
 
-	/**
-	 * 
-	 * @return
-	 */
-	private List<AlunoDisciplinaTurma> pesquisaNotasAluno() {
+	private List<AlunoDisciplinaTurma> pesquisaNotasAluno() throws AcmeException {
 		return getAlunoManager().buscaNotasAlunosAtendente(dataInicial, dataFinal, aluno);
 	}
 
-	/**
-	 * 
-	 * @return
-	 */
-	public String pesquisa() {
+	public String pesquisa() throws AcmeException {
 		listaResultado = pesquisaNotasAluno();
 		return null;
 	}
 
-	/**
-	 * 
-	 * @return
-	 */
 	public AlunoManager getAlunoManager() {
 		if (alunoManager == null) {
 			alunoManager = new AlunoManager();
@@ -147,10 +93,6 @@ public class AtendenteBean {
 		return alunoManager;
 	}
 
-	/**
-	 * 
-	 * @param alunoManager
-	 */
 	public void setAlunoManager(AlunoManager alunoManager) {
 		this.alunoManager = alunoManager;
 	}

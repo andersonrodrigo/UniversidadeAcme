@@ -17,6 +17,8 @@ import com.puc.acme.persistence.AlunoDisciplinaTurma;
 import com.puc.acme.persistence.Curso;
 import com.puc.acme.persistence.Disciplina;
 
+import exception.AcmeException;
+
 @Scope("session")
 @Named
 @ManagedBean(name = "alunoBean")
@@ -41,111 +43,55 @@ public class CoordenadorBean {
 
 	private String dataFinal;
 
-	/**
-	 * Gets e Sets
-	 * 
-	 */
-
-	/**
-	 * 
-	 * @return
-	 */
 	public List<AlunoDisciplinaTurma> getListaResultado() {
 		return listaResultado;
 	}
 
-	/**
-	 * 
-	 * @return
-	 */
 	public Curso getCurso() {
 		return curso;
 	}
 
-	/**
-	 * 
-	 * @param curso
-	 */
 	public void setCurso(Curso curso) {
 		this.curso = curso;
 	}
 
-	/**
-	 * 
-	 * @return
-	 */
 	public Aluno getAluno() {
 		return aluno;
 	}
 
-	/**
-	 * 
-	 * @param aluno
-	 */
 	public void setAluno(Aluno aluno) {
 		this.aluno = aluno;
 	}
 
-	/**
-	 * 
-	 * @param listaResultado
-	 */
 	public void setListaResultado(List<AlunoDisciplinaTurma> listaResultado) {
 		this.listaResultado = listaResultado;
 	}
 
-	/**
-	 * 
-	 * @return
-	 */
 	public Disciplina getDisciplina() {
 		return disciplina;
 	}
 
-	/**
-	 * 
-	 * @param disciplina
-	 */
 	public void setDisciplina(Disciplina disciplina) {
 		this.disciplina = disciplina;
 	}
 
-	/**
-	 * 
-	 * @return
-	 */
 	public String getDataInicial() {
 		return dataInicial;
 	}
 
-	/**
-	 * 
-	 * @param dataInicial
-	 */
 	public void setDataInicial(String dataInicial) {
 		this.dataInicial = dataInicial;
 	}
 
-	/**
-	 * 
-	 * @return
-	 */
 	public String getDataFinal() {
 		return dataFinal;
 	}
 
-	/**
-	 * 
-	 * @param dataFinal
-	 */
 	public void setDataFinal(String dataFinal) {
 		this.dataFinal = dataFinal;
 	}
 
-	/**
-	 * 
-	 */
-	public void apresentaNotasAluno() {
+	public void apresentaNotasAluno() throws AcmeException {
 
 		disciplina = new Disciplina();
 
@@ -162,11 +108,7 @@ public class CoordenadorBean {
 		navHandler.handleNavigation(context, null, "apresentaNotasCoordenador");
 	}
 
-	/**
-	 * 
-	 * @return
-	 */
-	private List<AlunoDisciplinaTurma> pesquisaNotasAluno() {
+	private List<AlunoDisciplinaTurma> pesquisaNotasAluno() throws AcmeException {
 		HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext()
 				.getRequest();
 
@@ -174,11 +116,7 @@ public class CoordenadorBean {
 				request.getUserPrincipal().getName());
 	}
 
-	/**
-	 * 
-	 * @return
-	 */
-	public String pesquisa() {
+	public String pesquisa() throws AcmeException {
 		listaResultado = pesquisaNotasAluno();
 		return null;
 	}
