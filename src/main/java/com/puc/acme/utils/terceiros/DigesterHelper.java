@@ -1,4 +1,4 @@
-package com.puc.acme.utils;
+package com.puc.acme.utils.terceiros;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;

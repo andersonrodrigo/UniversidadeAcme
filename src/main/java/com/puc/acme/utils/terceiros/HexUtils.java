@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.puc.acme.utils;
+package com.puc.acme.utils.terceiros;
 
 import java.io.ByteArrayOutputStream;
 

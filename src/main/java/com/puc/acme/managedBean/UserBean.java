@@ -16,7 +16,7 @@ import org.springframework.context.annotation.Scope;
 import com.puc.acme.factory.FactoryBanco;
 import com.puc.acme.persistence.Aluno;
 import com.puc.acme.persistence.Usuario;
-import com.puc.acme.utils.DigesterHelper;
+import com.puc.acme.utils.terceiros.DigesterHelper;
 
 @Scope("session")
 @Named
